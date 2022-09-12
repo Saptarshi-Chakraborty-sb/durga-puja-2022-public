@@ -1,11 +1,2 @@
-
-let table = document.getElementById('content-table');
-let tr = document.createElement('tr');
-
-document.addEventListener("load", appendAllImageData);
-
-
-
-function appendAllImageData() {
-    console.log(table);
-}
+// confirm("Hello");
+console.log("%cscript.js", "color:yellow;");

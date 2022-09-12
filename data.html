@@ -5,17 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/fetch.css">
-    <title>All Data</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/data.css">
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+    <script src="./js/data.js" defer></script>
+    <title>Clubs & Themes - Durga Puja 2022 - Berhampore</title>
 </head>
 
 <body>
-    <button id="submitBtn">Click Here</button>
-    <br><br>
-    <div id="content">
-        
+    <nav>
+        <ul class="nav-box">
+            <li><a href="./">Home</a></li>
+            <li><a href="./data.html">All&nbsp;Clubs</a></li>
+            <li><a href="./details.html">Pujo&nbsp;Details</a></li>
+            <li><a href="./image.html">Images</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="btn-group">
+            <button id="all-clubs-btn" class="btn">All Clubs</button>
+            <button id="all-themes-btn" class="btn">All Themes</button>
+        </div>
+        <div id="content" class="content"></div>
+
     </div>
 </body>
-<script src="./js/fetch.js"></script>
 
 </html>

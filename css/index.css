@@ -1,0 +1,36 @@
+
+.container {
+  margin: 20px 0px;
+}
+
+details {
+  cursor: pointer;
+}
+
+body {
+  counter-reset: heading;
+}
+
+summary {
+  counter-increment: heading;
+}
+
+summary::marker {
+  content: counter(heading) ". ";
+  /* font-size: 2rem; */
+  color: rosybrown;
+}
+
+/* For my phone */
+@media only screen and (max-width: 600px) {
+  .nav-box {
+    justify-content: space-evenly;
+    gap: 2vw;
+  }
+
+  .nav-box li {
+    gap: 1vw;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+}
