@@ -1,25 +1,68 @@
-
 .container {
   margin: 20px 0px;
 }
 
-details {
-  cursor: pointer;
+*::selection {
+  background-color: rgb(21, 72, 74);
+  color: rgb(255, 223, 211);
 }
 
 body {
   counter-reset: heading;
 }
 
+.container h2 {
+  text-align: center;
+  text-decoration: underline;
+  margin: 20px 0px;
+  color: rgb(100, 27, 0);
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+details {
+  padding: 0px 10px;
+  border: 1px solid rgb(255, 250, 244);
+  margin: 0px;
+  /* background-color: aqua; */
+}
+
+details[open] {
+  border: 1px solid black;
+  padding-bottom: 10px;
+}
+
+details p {
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+details p span {
+  font-weight: normal;
+  /* background-color: aqua; */
+  border-bottom: 1px solid salmon;
+}
+
 summary {
   counter-increment: heading;
+  background-color: rgb(255, 250, 244);
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-family: "Baloo Da 2", cursive;
+  cursor: pointer;
+}
+
+summary:active {
+  background-color: rgb(255, 250, 244);
 }
 
 summary::marker {
   content: counter(heading) ". ";
-  /* font-size: 2rem; */
-  color: rosybrown;
+  font-size: 1.7rem;
+  color: rgb(16, 64, 56);
 }
+
 
 /* For my phone */
 @media only screen and (max-width: 600px) {
@@ -32,5 +75,14 @@ summary::marker {
     gap: 1vw;
     font-size: 0.9rem;
     font-weight: 700;
+  }
+
+  details p {
+    margin-left: 10px;
+  }
+
+  .container h2 {
+    letter-spacing: normal;
+    font-size: 1.5rem;
   }
 }

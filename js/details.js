@@ -6,6 +6,9 @@ let dropdown = document.getElementById('options-dropdown');
 let searchButton = document.getElementById("details-search-btn");
 let contentBox = document.getElementById('content-box');
 
+// Data Variables
+let AllData;
+
 getAllClubs();
 
 searchButton.addEventListener("click", getDetails);
@@ -21,7 +24,8 @@ function getAllClubs() {
 
     let api = "https://script.google.com/macros/s/AKfycbwKg9Scw9qcQjo4gq86PqZaUcDjyd-IyrJC9gyjA23f0ReBmO-BeaMYfqLMfKShnDxYpg/exec";
     let formData = new FormData();
-    formData.append('action', 'getAllClubNames');
+    // formData.append('action', 'getAllClubNames');
+    formData.append('action', 'getAllDetails');
     let params = { method: "POST", body: formData };
 
 
@@ -47,6 +51,8 @@ function getAllClubs() {
         let option = document.createElement('option');
         let all = result.data;
 
+        AllData = all;
+
         option.value = "0";
         option.innerHTML = "&nbsp; SELECT CLUB &nbsp;";
         option.disabled = true;
@@ -56,7 +62,7 @@ function getAllClubs() {
         for (let i = 0; i < all.length; i++) {
             option = document.createElement('option');
             option.value = `${i + 1}`;
-            option.innerText = all[i];
+            option.innerText = all[i].name;
 
             dropdown.appendChild(option);
         }
@@ -70,57 +76,24 @@ function getAllClubs() {
 
 function getDetails() {
     let id = dropdown.value;
-    if (id === "" || id === "0"){
+    if (id === "" || id === "0") {
         return;
     }
-    
-    console.log("Loading details...");
-    contentBox.innerHTML = "Loading..."
-    let interval = setInterval(() => {
-        contentBox.innerHTML += "..."
-    }, 200);
-
-    let api = "https://script.google.com/macros/s/AKfycbwKg9Scw9qcQjo4gq86PqZaUcDjyd-IyrJC9gyjA23f0ReBmO-BeaMYfqLMfKShnDxYpg/exec";
-
-
-    let formData = new FormData();
-    formData.append('action', 'getDetails');
-    formData.append('id', id);
-    formData.append
-    let params = { method: "POST", body: formData };
-
     console.log(`id: ${id}`);
 
-    fetch(api, params).then(res => res.text()).then((_result) => {
-        clearInterval(interval);
+    if (id <= 0) {
+        contentBox.innerHTML = "<h2>Invalid Search. Try again</h2>";
+        return;
+    }
 
-        let result;
-        try {
-            result = JSON.parse(_result);
-            if (result.status != 0)
-                throw new Error("Incorrect request");
-        } catch (error) {
-            console.log(result);
-            contentBox.innerHTML = "<h2>An error occured. Try again</h2>";
-            console.log(`JSON Error: ${error}`);
-            return;
-        }
+    let data = AllData[(id - 1)];
 
-        console.log(result.data);
-        let data = result.data;
-
-        contentBox.innerHTML = `
+    contentBox.innerHTML = `
         <p><span>ক্লাব</span>&nbsp; : &nbsp; ${data.name}</p>
         <p><span>থিম</span>&nbsp; : &nbsp; ${data.theme}</p>
         <p><span>সম্বন্ধে</span>&nbsp; : &nbsp; ${data.details}</p>
         <p><span>ঠিকানা</span>&nbsp; : &nbsp; ${data.address}</p>
         <p><span>এলাকা</span>&nbsp; : &nbsp; ${data.locality}</p>
         `;
-    }).catch((error) => {
-        console.log(`FETCH ERROR: ${error}`);
-        contentBox.innerHTML = "<h2>An error occured during fetching data. Try again</h2>";
-    })
-
-
 
 }
