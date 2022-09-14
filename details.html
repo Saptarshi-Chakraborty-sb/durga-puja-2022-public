@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fffaf4">
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/details.css">
@@ -25,8 +26,12 @@
 
     <div class="container">
         <div class="option-box">
+            <div class="area-box">
+                <span>এলাকা&nbsp;: </span>
+                <select id="area-dropdown"></select>
+            </div>
+
             <select id="options-dropdown"></select>
-            <!-- <button id="details-search-btn">Search</button> -->
         </div>
 
         <div class="content-box" id="content-box">
@@ -40,6 +45,8 @@
     </div>
 
 </body>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cabe452b84fe434caf9fd77a861e1edf"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+    data-cf-beacon='{"token": "cabe452b84fe434caf9fd77a861e1edf"}'></script><!-- End Cloudflare Web Analytics -->
 
 </html>

@@ -5,16 +5,21 @@ console.log("%c details.js", "color:yellow;");
 let dropdown = document.getElementById('options-dropdown');
 let searchButton = document.getElementById("details-search-btn");
 let contentBox = document.getElementById('content-box');
+let areaDropdown = document.getElementById('area-dropdown');
 
 // Data Variables
 let AllData;
 
 getAllClubs();
 
-
 dropdown.addEventListener("change", getDetails);
 
+areaDropdown.addEventListener("change", changeClubsAsArea);
 
+
+
+
+// Functions
 function getAllClubs() {
     console.log("Loading all club names...");
     contentBox.innerHTML = "Loading..."
@@ -50,7 +55,9 @@ function getAllClubs() {
         document.getElementsByClassName("option-box")[0].style.visibility = "visible";
 
         let option = document.createElement('option');
+        let areaOption = document.createElement('option');
         let all = result.data;
+        let allAreas = new Array();
 
         AllData = all;
 
@@ -60,12 +67,31 @@ function getAllClubs() {
         option.setAttribute("selected", true);
         dropdown.appendChild(option);
 
+
+        areaOption.value = "all";
+        areaOption.innerHTML = "&nbsp; ALL &nbsp;";
+        areaOption.selected = true;
+        areaDropdown.appendChild(areaOption);
+
+
         for (let i = 0; i < all.length; i++) {
             option = document.createElement('option');
             option.value = `${i + 1}`;
             option.innerText = all[i].name;
-
             dropdown.appendChild(option);
+
+            if (!allAreas.includes(all[i].locality)) {
+                allAreas.push(all[i].locality);
+                areaOption = document.createElement('option');
+                areaOption.value = all[i].locality;
+
+                if (all[i].locality === 'unknown')
+                    areaOption.innerText = "Others";
+                else
+                    areaOption.innerText = all[i].locality;
+
+                areaDropdown.appendChild(areaOption);
+            }
         }
 
     }).catch((error) => {
@@ -101,7 +127,7 @@ function getDetails() {
     // contentBox.appendChild(document.createElement('br'));
 
     for (let i = 0; i < images.length; i++) {
-        
+
         let a = document.createElement('a');
         a.innerHTML = `<img class='sample-img' src="${images[i]}" height="100%" >`;
         a.href = images[i];
@@ -109,4 +135,36 @@ function getDetails() {
         contentBox.appendChild(a);
     }
 
+}
+
+function changeClubsAsArea() {
+    let value = areaDropdown.value;
+    value = value.trim();
+
+    let i;
+    let option = document.createElement('option');
+    dropdown.innerHTML = "";
+
+    option.value = "0";
+    option.innerHTML = "&nbsp; SELECT CLUB &nbsp;";
+    option.disabled = true;
+    option.setAttribute("selected", true);
+    dropdown.appendChild(option);
+    
+    for (i = 0; i < AllData.length; i++) {
+        let element = AllData[i];
+        if (value === 'all') {
+            option = document.createElement("option");
+            option.value = `${i + 1}`;
+            option.innerText = element.name;
+            dropdown.appendChild(option);            
+
+        } else if (value === element.locality) {
+            option = document.createElement("option");
+            option.value = `${i + 1}`;
+            option.innerText = element.name;
+            dropdown.appendChild(option);            
+        
+        }
+    }
 }

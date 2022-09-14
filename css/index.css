@@ -1,5 +1,5 @@
 .container {
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
 
 *::selection {
@@ -14,12 +14,51 @@ body {
 .container h2 {
   text-align: center;
   text-decoration: underline;
-  margin: 20px 0px;
+  margin: 10px 0px;
   color: rgb(100, 27, 0);
   font-size: 2.5rem;
   letter-spacing: 3px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+
+/* Area Selection */
+.container .option-box {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 10px;
+  visibility: hidden;
+}
+
+.container .option-box .area-box span {
+  margin-right: 5px;
+  font-size: 1.3rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 600;
+}
+
+.container .option-box select {
+  outline: none;
+  border: 2px solid saddlebrown;
+  background-color: transparent;
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  min-width: 20vw;
+}
+
+
+
+
+
+
+
+/* Content Box */
 
 details {
   padding: 0px 10px;
@@ -84,6 +123,41 @@ summary::marker {
     font-size: 1.5rem;
     margin-bottom: 10px;
   }
+
+  .container .option-box {
+    padding: 0px 10px;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .container .option-box .area-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .container .option-box .area-box select {
+    width: 100%;
+  }
+
+  .container .option-box .area-box span {
+    margin-left: 0px;
+    margin-right: 5px;
+    font-size: 1.2rem;
+  }
+
+  .container .option-box select {
+    outline: none;
+    border: 2px solid saddlebrown;
+    padding: 8px 0px;
+    margin: 0%;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    min-width: 50vw;
+    width: 100%;
+    text-align: center;
+  }
+
 
   details p {
     margin-left: 10px;

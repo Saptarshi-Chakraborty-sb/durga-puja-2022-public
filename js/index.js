@@ -1,17 +1,26 @@
 // confirm("Hello");
 console.log("%c index.js", "color:yellow;");
 
+// DOM Variables
 let contentBox = document.getElementById('content-box');
+let areaDropdown = document.getElementById('area-dropdown');
+
+// Data Variables
+let AllData;
+
+
 
 getAllData();
 
+areaDropdown.addEventListener("click", changeClubsAsArea);
 
 
+// Functions
 function getAllData() {
     console.log("Loading all club names...");
     contentBox.innerHTML = "Loading..."
     let interval = setInterval(() => {
-        contentBox.innerHTML += "..."
+        contentBox.innerHTML += "."
     }, 200);
 
 
@@ -39,13 +48,19 @@ function getAllData() {
             return;
         }
 
-        // name : "লিচুতলা সর্বজনীন দুর্গাপূজা কমিটি"
-        // theme : "আমেরিকা-র প্যাগোডা"
-        // details : "৩য় বর্ষ"
-        // address : "লিচুতলা ,হরিদাসমাটি"
-        // locality : "হরিদাসমাটি"
         let details = document.createElement('details');
+        let areaOption = document.createElement('option');
+        let allAreas = new Array();
         let all = result.data;
+
+        AllData = all;
+        document.getElementById('option-box').style.visibility = "visible";
+
+        areaOption.value = "all";
+        areaOption.innerHTML = "&nbsp; ALL &nbsp;";
+        areaOption.selected = true;
+        areaDropdown.appendChild(areaOption);
+
         for (let i = 0; i < all.length; i++) {
             let element = all[i];
             details = document.createElement('details');
@@ -58,10 +73,62 @@ function getAllData() {
             `;
 
             contentBox.appendChild(details);
+
+            // Setup all areas
+            if (!allAreas.includes(element.locality)) {
+                allAreas.push(element.locality);
+                areaOption = document.createElement('option');
+                areaOption.value = element.locality;
+
+                if (element.locality === 'unknown')
+                    areaOption.innerText = "Others";
+                else
+                    areaOption.innerText = element.locality;
+
+                areaDropdown.appendChild(areaOption);
+            }
         }
 
     }).catch((error) => {
         console.log(`FETCH ERROR: ${error}`);
         contentBox.innerHTML = "<h2>An error occured during fetching data. Try again</h2>";
     })
+}
+
+
+function changeClubsAsArea() {
+    let value = areaDropdown.value;
+    value = value.trim();
+
+    let i;
+    let details = document.createElement('details');
+    contentBox.innerHTML = "";
+
+
+    for (i = 0; i < AllData.length; i++) {
+        let element = AllData[i];
+        if (value === 'all') {
+            details = document.createElement('details');
+            details.innerHTML = `
+            <summary>${element.name}</summary>
+            <p><span>থিম</span> : ${element.theme}</p>
+            <p><span>সম্বন্ধে</span> : ${element.details}</p>
+            <p><span>ঠিকানা</span> : ${element.address}</p>
+            <p><span>এলাকা</span> : ${element.locality}</p>
+            `;
+            contentBox.appendChild(details);
+
+        } else if (value === element.locality) {
+            details = document.createElement('details');
+            details.innerHTML = `
+            <summary>${element.name}</summary>
+            <p><span>থিম</span> : ${element.theme}</p>
+            <p><span>সম্বন্ধে</span> : ${element.details}</p>
+            <p><span>ঠিকানা</span> : ${element.address}</p>
+            <p><span>এলাকা</span> : ${element.locality}</p>
+            `;
+            contentBox.appendChild(details);
+
+        }
+    }
 }
