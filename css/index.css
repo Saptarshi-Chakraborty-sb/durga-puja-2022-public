@@ -31,14 +31,17 @@ details {
 details[open] {
   border: 1px solid black;
   padding-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 details p {
   margin-left: 10px;
   font-weight: 700;
+  font-size: 1.1rem;
 }
 
 details p span {
+  font-size: 1rem;
   font-weight: normal;
   /* background-color: aqua; */
   border-bottom: 1px solid salmon;

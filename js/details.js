@@ -11,7 +11,8 @@ let AllData;
 
 getAllClubs();
 
-searchButton.addEventListener("click", getDetails);
+
+dropdown.addEventListener("change",getDetails);
 
 
 function getAllClubs() {
@@ -79,7 +80,7 @@ function getDetails() {
     if (id === "" || id === "0") {
         return;
     }
-    console.log(`id: ${id}`);
+    // console.log(`id: ${id}`);
 
     if (id <= 0) {
         contentBox.innerHTML = "<h2>Invalid Search. Try again</h2>";
