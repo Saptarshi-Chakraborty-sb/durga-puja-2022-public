@@ -12,7 +12,7 @@ let AllData;
 
 getAllData();
 
-areaDropdown.addEventListener("click", changeClubsAsArea);
+areaDropdown.addEventListener("change", changeClubsAsArea);
 
 
 // Functions
