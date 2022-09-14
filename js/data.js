@@ -20,7 +20,7 @@ function fetchData() {
     console.log("Functioning...");
 
     let api;
-    api = "https://script.google.com/macros/s/AKfycbwKg9Scw9qcQjo4gq86PqZaUcDjyd-IyrJC9gyjA23f0ReBmO-BeaMYfqLMfKShnDxYpg/exec";
+    api = "https://script.google.com/macros/s/AKfycbxeToG5lDI7CAakz2nx1aVJBTvVrQC-kW8HeIQ_X2wqw39l-OUaWK1T-hWrzFS6iAlwFQ/exec";
 
     let primaryFormData = {};
 
@@ -80,7 +80,7 @@ function getData(type = "club") {
         contentBox.innerHTML += ".";
     }, 500);
 
-    let api = "https://script.google.com/macros/s/AKfycbwKg9Scw9qcQjo4gq86PqZaUcDjyd-IyrJC9gyjA23f0ReBmO-BeaMYfqLMfKShnDxYpg/exec";
+    let api = "https://script.google.com/macros/s/AKfycbxeToG5lDI7CAakz2nx1aVJBTvVrQC-kW8HeIQ_X2wqw39l-OUaWK1T-hWrzFS6iAlwFQ/exec";
 
     let formData = new FormData();
     formData.append('action', (type === "theme" ? "getAllPujoThemes" : "getAllClubNames"));

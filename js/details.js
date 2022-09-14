@@ -12,18 +12,18 @@ let AllData;
 getAllClubs();
 
 
-dropdown.addEventListener("change",getDetails);
+dropdown.addEventListener("change", getDetails);
 
 
 function getAllClubs() {
     console.log("Loading all club names...");
     contentBox.innerHTML = "Loading..."
     let interval = setInterval(() => {
-        contentBox.innerHTML += "..."
+        contentBox.innerHTML += "."
     }, 200);
 
 
-    let api = "https://script.google.com/macros/s/AKfycbwKg9Scw9qcQjo4gq86PqZaUcDjyd-IyrJC9gyjA23f0ReBmO-BeaMYfqLMfKShnDxYpg/exec";
+    let api = "https://script.google.com/macros/s/AKfycbxeToG5lDI7CAakz2nx1aVJBTvVrQC-kW8HeIQ_X2wqw39l-OUaWK1T-hWrzFS6iAlwFQ/exec";
     let formData = new FormData();
     // formData.append('action', 'getAllClubNames');
     formData.append('action', 'getAllDetails');
@@ -95,6 +95,18 @@ function getDetails() {
         <p><span>সম্বন্ধে</span>&nbsp; : &nbsp; ${data.details}</p>
         <p><span>ঠিকানা</span>&nbsp; : &nbsp; ${data.address}</p>
         <p><span>এলাকা</span>&nbsp; : &nbsp; ${data.locality}</p>
-        `;
+    `;
+
+    let images = data.images;
+    // contentBox.appendChild(document.createElement('br'));
+
+    for (let i = 0; i < images.length; i++) {
+        
+        let a = document.createElement('a');
+        a.innerHTML = `<img class='sample-img' src="${images[i]}" height="100%" >`;
+        a.href = images[i];
+        a.target = "_blank";
+        contentBox.appendChild(a);
+    }
 
 }
