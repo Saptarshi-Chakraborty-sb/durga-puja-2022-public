@@ -63,7 +63,6 @@ summary::marker {
   color: rgb(16, 64, 56);
 }
 
-
 /* For my phone */
 @media only screen and (max-width: 600px) {
   .nav-box {
@@ -77,12 +76,29 @@ summary::marker {
     font-weight: 700;
   }
 
+  .container h2 {
+    letter-spacing: normal;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
   details p {
     margin-left: 10px;
   }
 
-  .container h2 {
-    letter-spacing: normal;
-    font-size: 1.5rem;
+  details {
+    margin-left: 0px;
+  }
+
+  summary {
+    font-size: 1.2rem;
+  }
+
+  summary::marker {
+    font-size: 1.4rem;
+  }
+
+  body {
+    padding: 10px 5px;
   }
 }
