@@ -8,21 +8,30 @@ let areaDropdown = document.getElementById('area-dropdown');
 // Data Variables
 let AllData;
 
-
-
+// Program Execution start
 getAllData();
 
+
+
+// Event Listners
 areaDropdown.addEventListener("change", changeClubsAsArea);
+
 
 
 // Functions
 function getAllData() {
+    // Check if Internet is On
+    if (navigator.onLine === false) {
+        console.log(`Internet Connection Unavailable`);
+        contentBox.innerHTML = "<h2>Your Internet Connection is not available. Turn it on and try again</h2>";
+        return;
+    }
+    
     console.log("Loading all club names...");
     contentBox.innerHTML = "Loading..."
     let interval = setInterval(() => {
         contentBox.innerHTML += "."
     }, 200);
-
 
     let api = "https://script.google.com/macros/s/AKfycbxeToG5lDI7CAakz2nx1aVJBTvVrQC-kW8HeIQ_X2wqw39l-OUaWK1T-hWrzFS6iAlwFQ/exec";
     let formData = new FormData();
@@ -64,6 +73,7 @@ function getAllData() {
         for (let i = 0; i < all.length; i++) {
             let element = all[i];
             details = document.createElement('details');
+            details.title = "Click to view details";
             details.innerHTML = `
             <summary>${element.name}</summary>
             <p><span>থিম</span> : ${element.theme}</p>
@@ -90,6 +100,7 @@ function getAllData() {
         }
 
     }).catch((error) => {
+        clearTimeout(interval);
         console.log(`FETCH ERROR: ${error}`);
         contentBox.innerHTML = "<h2>An error occured during fetching data. Try again</h2>";
     })
@@ -109,6 +120,7 @@ function changeClubsAsArea() {
         let element = AllData[i];
         if (value === 'all') {
             details = document.createElement('details');
+            details.title = "Click to view details";
             details.innerHTML = `
             <summary>${element.name}</summary>
             <p><span>থিম</span> : ${element.theme}</p>

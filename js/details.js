@@ -21,6 +21,14 @@ areaDropdown.addEventListener("change", changeClubsAsArea);
 
 // Functions
 function getAllClubs() {
+    // Check if Internet is On
+    if (navigator.onLine === false) {
+        console.log(`Internet Connection Unavailable`);
+        contentBox.innerHTML = "<h2 style='color:brown;text-decoration:underline;text-align:center;'>Your Internet Connection is not available. Turn it on and try again</h2>";
+        return;
+    }
+
+
     console.log("Loading all club names...");
     contentBox.innerHTML = "Loading..."
     let interval = setInterval(() => {
