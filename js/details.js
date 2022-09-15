@@ -143,9 +143,8 @@ function getDetails() {
 
 
     for (let i = 0; i < images.length; i++) {
-
         let a = document.createElement('a');
-        a.innerHTML = `<img class='sample-img' src="${images[i]}" height="100%" >`;
+        a.innerHTML = `<img alt="${data.name}" class='sample-img' src="${images[i]}" height="100%" >`;
         a.href = images[i];
         a.target = "_blank";
         contentBox.appendChild(a);
