@@ -21,6 +21,16 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+.container .muted-text {
+  text-align: center;
+  font-family: monospace;
+  font-weight: 600;
+  color: teal;
+  font-size: 0.9rem;
+  color: grey;
+  margin-bottom: 10px;
+}
+
 /* Area Selection */
 .container .option-box {
   background-color: transparent;
@@ -51,11 +61,6 @@ body {
   cursor: pointer;
   min-width: 20vw;
 }
-
-
-
-
-
 
 
 /* Content Box */
@@ -157,7 +162,6 @@ summary::marker {
     width: 100%;
     text-align: center;
   }
-
 
   details p {
     margin-left: 10px;

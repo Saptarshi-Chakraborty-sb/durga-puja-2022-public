@@ -124,7 +124,15 @@ function getDetails() {
     `;
 
     let images = data.images;
-    // contentBox.appendChild(document.createElement('br'));
+    if (images.length === 0) {
+        let p = document.createElement('p');
+        p.innerText = "No Image Available";
+        p.style.marginTop = "20px";
+        p.style.textDecoration = "underline";
+        contentBox.appendChild(p);
+        return;
+    }
+
 
     for (let i = 0; i < images.length; i++) {
 
@@ -150,21 +158,21 @@ function changeClubsAsArea() {
     option.disabled = true;
     option.setAttribute("selected", true);
     dropdown.appendChild(option);
-    
+
     for (i = 0; i < AllData.length; i++) {
         let element = AllData[i];
         if (value === 'all') {
             option = document.createElement("option");
             option.value = `${i + 1}`;
             option.innerText = element.name;
-            dropdown.appendChild(option);            
+            dropdown.appendChild(option);
 
         } else if (value === element.locality) {
             option = document.createElement("option");
             option.value = `${i + 1}`;
             option.innerText = element.name;
-            dropdown.appendChild(option);            
-        
+            dropdown.appendChild(option);
+
         }
     }
 }
