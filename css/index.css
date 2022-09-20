@@ -2,11 +2,6 @@
   margin: 10px 0px;
 }
 
-*::selection {
-  background-color: rgb(21, 72, 74);
-  color: rgb(255, 223, 211);
-}
-
 body {
   counter-reset: heading;
 }

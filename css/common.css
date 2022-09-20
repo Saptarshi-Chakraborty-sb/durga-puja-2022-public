@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+*::selection {
+  background-color: rgb(21, 72, 74);
+  color: rgb(255, 223, 211);
+}
+
 body {
   padding: 10px 20px;
   background-color: rgb(255, 250, 244);
